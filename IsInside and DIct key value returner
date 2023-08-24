@@ -1,0 +1,45 @@
+
+const myObject = "{ name: 'ali', age:45, prof:'doctor }";
+
+function isInside(element,list){
+    for(val of list){
+        if(val ==element){
+            return true
+        }
+    }
+    return false
+} 
+
+function demo(data){
+    var keys=[]
+    var values=[]
+    var komo=[" ","{","'","}"]
+    var text=""
+    for(el of data){
+        
+        if (isInside(el,komo)){
+            continue
+        }
+        else if(el==":"){
+            keys.push(text)
+            text=''
+        }
+        else if(el==","){
+            values.push(text)
+            text=''
+        }
+        else{
+            text+=el
+        }
+        
+    }
+    if(text){
+        values.push(text)
+    }
+    return values
+    
+}  
+
+
+console.log(demo(myObject))
+
